@@ -1,0 +1,52 @@
+name: Nationalize.io FinOps
+description: Financial operations guidance for Nationalize.io nationality prediction API
+url: https://nationalize.io/pricing
+unit: name
+unit_description: Each individual name submitted counts as one unit regardless of whether it is part of a batch request or a single request
+
+cost_model:
+  type: subscription
+  description: Monthly subscription tiers with fixed name allowances; no per-unit overage charges
+  billing_cycle: monthly
+  annual_discount: true
+  annual_discount_notes: Annual billing provides approximately 17% discount equivalent to 10 months cost for 12 months of service
+
+tiers:
+  - plan: Free
+    monthly_cost: 0
+    names_per_month: 2500
+    cost_per_1000_names: 0
+    notes: No credit card required; daily request cap of 100 applies
+
+  - plan: Starter
+    monthly_cost: 20
+    names_per_month: 25000
+    cost_per_1000_names: 0.80
+    notes: No daily rate limiting
+
+  - plan: Standard
+    monthly_cost: 60
+    names_per_month: 250000
+    cost_per_1000_names: 0.24
+    notes: No daily rate limiting; most cost-efficient fixed tier
+
+  - plan: Enterprise
+    monthly_cost: custom
+    names_per_month: 25000000+
+    cost_per_1000_names: custom
+    notes: Contact sales for pricing on more than 25 million names per month
+
+cost_optimization:
+  - tip: Batch up to 10 names per API request to maximize throughput without additional cost
+  - tip: Use the free tier (2500 names/month) for prototyping before committing to a paid plan
+  - tip: Annual billing saves approximately 17% versus monthly billing on paid plans
+  - tip: The same API key covers Genderize.io and Agify.io — consolidating demographic enrichment under one subscription avoids duplicate plan costs
+  - tip: Monitor monthly usage via the dashboard to right-size your plan before the billing cycle resets
+  - tip: Requests that return null (unmatched names) still count against the monthly allowance; cleanse name lists before submission to avoid waste
+
+payment:
+  methods:
+    - Credit card (major cards accepted)
+    - PayPal
+  processor: Stripe
+  cancellation: Cancel anytime; access continues for remainder of current billing period; no retention period

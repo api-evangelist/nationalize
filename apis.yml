@@ -1,0 +1,56 @@
+aid: nationalize
+name: Nationalize.io
+description: Free REST API that predicts the nationality of a person based on their first name using probabilistic models derived from a dataset of approximately one billion people spanning 250 countries and territories. Accepts single or batched names, handles diacritics and non-Latin alphabets, and returns ranked country probabilities as JSON. The same API key works across all three Demografix services (Genderize, Agify, Nationalize).
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Nationality
+  - Name Prediction
+  - Demographics
+  - Probabilistic Models
+  - People
+apis:
+  - aid: nationalize:nationalize-api
+    name: Nationalize.io API
+    description: Predicts the nationality of a person based on their name, returning ranked country probabilities drawn from a dataset of approximately one billion people. Supports single name lookups, batched requests of up to 10 names, full name parsing, diacritics, and optional country scoping.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://nationalize.io/documentation
+    baseURL: https://api.nationalize.io
+    tags:
+      - Nationality
+      - Name Prediction
+      - Demographics
+    properties:
+      - type: Documentation
+        url: https://nationalize.io/documentation
+      - type: Pricing
+        url: https://nationalize.io/pricing
+common:
+  - type: Website
+    url: https://nationalize.io
+  - type: Documentation
+    url: https://nationalize.io/documentation
+  - type: Pricing
+    url: https://nationalize.io/pricing
+  - type: Plans
+    url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/plans/nationalize-plans-pricing.yml
+  - type: RateLimits
+    url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/rate-limits/nationalize-rate-limits.yml
+  - type: FinOps
+    url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/finops/nationalize-finops.yml
+  - type: TermsOfService
+    url: https://nationalize.io/legal/terms-and-conditions
+  - type: PrivacyPolicy
+    url: https://nationalize.io/legal/privacy-policy
+  - type: FAQ
+    url: https://nationalize.io/faq
+  - type: Login
+    url: https://nationalize.io/login
+  - type: SignUp
+    url: https://nationalize.io/register
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

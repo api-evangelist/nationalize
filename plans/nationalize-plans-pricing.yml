@@ -1,0 +1,82 @@
+name: Nationalize.io Plans and Pricing
+description: Pricing plans for Nationalize.io nationality prediction API
+url: https://nationalize.io/pricing
+plans:
+  - name: Free
+    description: Free tier for prototyping and small research projects, no credit card required
+    price: 0
+    currency: USD
+    period: month
+    features:
+      - 2500 names per month
+      - Access to all 250+ countries
+      - Full name parsing with diacritics support
+      - Community SDKs in 12+ languages
+      - No credit card required
+    rate_limits:
+      - 100 requests per day
+      - 2500 names per month
+    overage: No overage fees; 429 response when limit reached
+
+  - name: Starter
+    description: Entry-level paid plan for small production workloads
+    price: 20
+    currency: USD
+    period: month
+    features:
+      - 25000 names per month
+      - No rate limiting (besides monthly limit)
+      - All three APIs (gender, age, nationality)
+      - Email support
+      - Spreadsheet bulk upload tool
+      - Zapier, Make, Pipedream integrations
+      - DPA and GDPR compliance
+      - Country-scoped requests
+      - Community SDKs in 12 languages
+      - Cancel anytime
+    rate_limits:
+      - No rate limiting
+      - 25000 names per month
+    overage: No overage fees; 429 response when limit reached
+
+  - name: Standard
+    description: Standard plan for higher-volume production use
+    price: 60
+    currency: USD
+    period: month
+    features:
+      - 250000 names per month
+      - No rate limiting (besides monthly limit)
+      - All three APIs (gender, age, nationality)
+      - Email support
+      - Spreadsheet bulk upload tool
+      - Zapier, Make, Pipedream integrations
+      - DPA and GDPR compliance
+      - Country-scoped requests
+      - Community SDKs in 12 languages
+      - Cancel anytime
+    rate_limits:
+      - No rate limiting
+      - 250000 names per month
+    overage: No overage fees; 429 response when limit reached
+
+  - name: Enterprise
+    description: Custom plan for large-scale use exceeding 25 million names per month
+    price: custom
+    currency: USD
+    period: month
+    features:
+      - More than 25000000 names per month
+      - No rate limiting (besides monthly limit)
+      - All three APIs (gender, age, nationality)
+      - Priority email support
+      - Spreadsheet bulk upload tool
+      - Zapier, Make, Pipedream integrations
+      - DPA and GDPR compliance
+      - Country-scoped requests
+      - Community SDKs in 12 languages
+      - Customized plan design
+    rate_limits:
+      - No rate limiting
+      - Custom monthly name limit
+    overage: No overage fees; custom arrangement

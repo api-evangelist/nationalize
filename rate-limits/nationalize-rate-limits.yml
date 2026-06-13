@@ -1,0 +1,56 @@
+name: Nationalize.io Rate Limits
+description: Rate limiting policies for Nationalize.io nationality prediction API
+url: https://nationalize.io/faq
+limits:
+  - name: Free Tier Daily Limit
+    description: Free users without a subscription are limited to 100 requests per day
+    plan: Free
+    limit: 100
+    period: day
+    unit: requests
+    notes: Each request can contain up to 10 names using array syntax
+
+  - name: Free Tier Monthly Limit
+    description: Free users are limited to 2500 names per month
+    plan: Free
+    limit: 2500
+    period: month
+    unit: names
+    notes: Usage resets each billing cycle
+
+  - name: Starter Monthly Limit
+    description: Starter subscribers are limited to 25000 names per month
+    plan: Starter
+    limit: 25000
+    period: month
+    unit: names
+    notes: No per-request rate limiting; only monthly cap applies
+
+  - name: Standard Monthly Limit
+    description: Standard subscribers are limited to 250000 names per month
+    plan: Standard
+    limit: 250000
+    period: month
+    unit: names
+    notes: No per-request rate limiting; only monthly cap applies
+
+  - name: Enterprise Monthly Limit
+    description: Enterprise subscribers have a custom monthly name limit exceeding 25 million
+    plan: Enterprise
+    limit: custom
+    period: month
+    unit: names
+    notes: No per-request rate limiting; custom monthly cap per agreement
+
+batch_limits:
+  - name: Batch Request Size
+    description: Up to 10 names can be submitted in a single API request using array syntax
+    limit: 10
+    period: request
+    unit: names
+
+overage_policy:
+  response_code: 429
+  response_message: Too Many Requests
+  description: Requests exceeding the monthly name allowance receive a 429 Too Many Requests response until the next billing cycle. No overage fees are charged.
+  reset: Next billing cycle
