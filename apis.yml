@@ -28,6 +28,8 @@ apis:
         url: https://nationalize.io/documentation
       - type: Pricing
         url: https://nationalize.io/pricing
+      - type: OpenAPI
+        url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/openapi/nationalize-openapi.json
 common:
   - type: Website
     url: https://nationalize.io

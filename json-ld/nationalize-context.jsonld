@@ -1,0 +1,49 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "nationalize": "https://nationalize.io/vocabulary#",
+
+    "NationalityPrediction": "nationalize:NationalityPrediction",
+    "CountryProbability": "nationalize:CountryProbability",
+
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "country": {
+      "@id": "nationalize:country",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "country_id": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "probability": {
+      "@id": "nationalize:probability",
+      "@type": "xsd:decimal"
+    },
+    "count": {
+      "@id": "nationalize:dataPointCount",
+      "@type": "xsd:integer"
+    }
+  },
+  "@graph": [
+    {
+      "@type": "schema:WebAPI",
+      "@id": "https://api.nationalize.io",
+      "schema:name": "Nationalize.io API",
+      "schema:description": "Predicts the nationality of a person based on their name using probabilistic models derived from approximately one billion people across 250 countries and territories.",
+      "schema:url": "https://nationalize.io",
+      "schema:documentation": "https://nationalize.io/documentation",
+      "schema:termsOfService": "https://nationalize.io/legal/terms-and-conditions",
+      "schema:provider": {
+        "@type": "schema:Organization",
+        "schema:name": "Demografix",
+        "schema:url": "https://nationalize.io"
+      }
+    }
+  ]
+}

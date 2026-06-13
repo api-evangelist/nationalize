@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/json-schema/nationalize-result-schema.json",
+  "title": "NationalityResult",
+  "description": "JSON Schema for a Nationalize.io API response object representing the predicted nationality for a single name.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The input name as submitted in the request"
+    },
+    "country": {
+      "description": "Ranked list of up to five predicted nationalities with ISO 3166-1 alpha-2 country codes and probability scores. Null when the name is not found in the dataset after all fallback matching attempts.",
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/CountryProbability"
+          },
+          "maxItems": 5
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of data points used in the prediction",
+      "minimum": 0
+    }
+  },
+  "required": ["name", "country", "count"],
+  "$defs": {
+    "CountryProbability": {
+      "title": "CountryProbability",
+      "description": "A country paired with the probability that the queried name belongs to that country",
+      "type": "object",
+      "properties": {
+        "country_id": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code",
+          "pattern": "^[A-Z]{2}$"
+        },
+        "probability": {
+          "type": "number",
+          "description": "Confidence score between 0 and 1",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": ["country_id", "probability"]
+    }
+  }
+}

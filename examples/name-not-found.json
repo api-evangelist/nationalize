@@ -1,0 +1,15 @@
+{
+  "description": "Response when a name is not found in the dataset after all matching attempts",
+  "request": {
+    "method": "GET",
+    "url": "https://api.nationalize.io?name=zzzzunknown&apikey=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "zzzzunknown",
+      "country": null,
+      "count": 0
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "vocabulary": [
+    {
+      "term": "name",
+      "definition": "A personal name (typically a last name for best accuracy) submitted to the API for nationality prediction. Full names are accepted and automatically parsed. Diacritics are handled via automatic fallback matching.",
+      "type": "input"
+    },
+    {
+      "term": "country_id",
+      "definition": "An ISO 3166-1 alpha-2 two-letter country code identifying a predicted country of nationality (e.g. 'VN' for Vietnam, 'US' for United States).",
+      "type": "identifier"
+    },
+    {
+      "term": "probability",
+      "definition": "A decimal confidence score between 0 and 1 indicating how likely the queried name belongs to the associated country. The sum of all probabilities in a result set may be less than 1 because only the top five results are returned.",
+      "type": "metric"
+    },
+    {
+      "term": "count",
+      "definition": "The number of data points (people with that name) in the underlying dataset used to compute the nationality prediction.",
+      "type": "metric"
+    },
+    {
+      "term": "batch",
+      "definition": "A single API request containing up to 10 names submitted using the array query parameter syntax `name[]=`. Each name counts individually toward the monthly usage quota.",
+      "type": "concept"
+    },
+    {
+      "term": "apikey",
+      "definition": "An API authentication key passed as a query parameter. Required for paid plans and to track usage. The same key is shared across the Demografix suite (Genderize, Agify, Nationalize).",
+      "type": "authentication"
+    },
+    {
+      "term": "diacritics",
+      "definition": "Accent marks and special characters used in names (e.g. é, ü, ñ). The API automatically retries with diacritics removed if an initial match fails.",
+      "type": "concept"
+    },
+    {
+      "term": "Demografix",
+      "definition": "The company behind Nationalize.io, Genderize.io, and Agify.io — three complementary name-inference APIs sharing a common API key.",
+      "type": "organization"
+    },
+    {
+      "term": "nationality",
+      "definition": "The predicted country of cultural or ethnic origin associated with a given name, represented as an ISO 3166-1 alpha-2 code. Distinct from citizenship or legal nationality.",
+      "type": "concept"
+    },
+    {
+      "term": "free tier",
+      "definition": "The default unauthenticated (or low-volume authenticated) access level providing up to 2,500 name predictions per month at no cost.",
+      "type": "tier"
+    }
+  ]
+}

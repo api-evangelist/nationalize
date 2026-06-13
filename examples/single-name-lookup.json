@@ -1,0 +1,21 @@
+{
+  "description": "Single name lookup for 'nguyen'",
+  "request": {
+    "method": "GET",
+    "url": "https://api.nationalize.io?name=nguyen&apikey=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "name": "nguyen",
+      "country": [
+        { "country_id": "VN", "probability": 0.561 },
+        { "country_id": "US", "probability": 0.035 },
+        { "country_id": "AU", "probability": 0.021 },
+        { "country_id": "CA", "probability": 0.016 },
+        { "country_id": "FR", "probability": 0.012 }
+      ],
+      "count": 360408
+    }
+  }
+}

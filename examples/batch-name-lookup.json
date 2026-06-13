@@ -1,0 +1,45 @@
+{
+  "description": "Batch name lookup for up to 10 names in a single request",
+  "request": {
+    "method": "GET",
+    "url": "https://api.nationalize.io?name[]=anna&name[]=john&name[]=kim&apikey=YOUR_API_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": [
+      {
+        "name": "anna",
+        "country": [
+          { "country_id": "FI", "probability": 0.083 },
+          { "country_id": "PL", "probability": 0.079 },
+          { "country_id": "SE", "probability": 0.071 },
+          { "country_id": "NO", "probability": 0.063 },
+          { "country_id": "DK", "probability": 0.058 }
+        ],
+        "count": 1234567
+      },
+      {
+        "name": "john",
+        "country": [
+          { "country_id": "US", "probability": 0.288 },
+          { "country_id": "GB", "probability": 0.195 },
+          { "country_id": "AU", "probability": 0.072 },
+          { "country_id": "CA", "probability": 0.065 },
+          { "country_id": "IE", "probability": 0.042 }
+        ],
+        "count": 987654
+      },
+      {
+        "name": "kim",
+        "country": [
+          { "country_id": "KR", "probability": 0.412 },
+          { "country_id": "US", "probability": 0.089 },
+          { "country_id": "NO", "probability": 0.071 },
+          { "country_id": "DK", "probability": 0.058 },
+          { "country_id": "GB", "probability": 0.047 }
+        ],
+        "count": 543210
+      }
+    ]
+  }
+}
