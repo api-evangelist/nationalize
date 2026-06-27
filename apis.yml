@@ -51,7 +51,7 @@ common:
     url: https://nationalize.io/faq
   - type: Login
     url: https://nationalize.io/login
-  - type: SignUp
+  - type: Signup
     url: https://nationalize.io/register
 maintainers:
   - FN: Kin Lane
