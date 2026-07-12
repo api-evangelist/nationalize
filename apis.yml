@@ -31,6 +31,10 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/openapi/nationalize-openapi.json
 common:
+  - type: DomainSecurity
+    url: security/nationalize-domain-security.yml
+  - type: Authentication
+    url: authentication/nationalize-authentication.yml
   - type: Website
     url: https://nationalize.io
   - type: Documentation
