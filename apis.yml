@@ -31,6 +31,8 @@ apis:
       - type: OpenAPI
         url: https://raw.githubusercontent.com/api-evangelist/nationalize/refs/heads/main/openapi/nationalize-openapi.json
 common:
+  - type: AgenticAccess
+    url: agentic-access/nationalize-agentic-access.yml
   - type: DomainSecurity
     url: security/nationalize-domain-security.yml
   - type: Authentication
