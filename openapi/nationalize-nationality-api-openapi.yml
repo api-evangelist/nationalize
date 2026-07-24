@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: Nationalize.io Nationality API
+  description: Free REST API that predicts the nationality of a person based on their first name using probabilistic models derived from a dataset of approximately one billion people spanning 250 countries and territories. Accepts single or batched names (up to 10), handles diacritics automatically, and returns ranked country probabilities as JSON using ISO 3166-1 alpha-2 codes. The same API key works across all three Demografix services (Genderize, Agify, Nationalize).
+  version: 1.0.0
+  termsOfService: https://nationalize.io/legal/terms-and-conditions
+  contact:
+    url: https://nationalize.io
+servers:
+- url: https://api.nationalize.io
+  description: Production server
+tags:
+- name: Nationality
+  description: Operations for predicting nationality from names
+paths:
+  /:
+    get:
+      operationId: predictNationality
+      summary: Predict nationality from name
+      description: Predicts the nationality of one or more people based on their names, returning ranked country probabilities drawn from a dataset of approximately one billion people. Supports single name lookups, batched requests of up to 10 names, full name parsing, and diacritics handling. Results are returned as ISO 3166-1 alpha-2 country codes paired with probability scores, up to five countries per name.
+      parameters:
+      - name: name
+        in: query
+        required: true
+        description: A single name to predict nationality for. For batched lookups use the array form `name[]` repeated up to 10 times. Last names carry the strongest nationality signals; full names are also accepted and parsed automatically.
+        schema:
+          type: string
+          example: nguyen
+      - name: name[]
+        in: query
+        required: false
+        description: Batch form of the name parameter. Repeat up to 10 times to look up multiple names in a single request. Each name counts individually toward the monthly usage limit.
+        schema:
+          type: array
+          items:
+            type: string
+          maxItems: 10
+          example:
+          - anna
+          - john
+          - kim
+        style: form
+        explode: true
+      - name: apikey
+        in: query
+        required: false
+        description: API authentication key. Required for paid plans and to track usage. Obtain at https://nationalize.io/login. The same key works across Genderize, Agify, and Nationalize.
+        schema:
+          type: string
+          example: your_api_key_here
+      responses:
+        '200':
+          description: Nationality prediction result. Returns a single object for a single name lookup, or an array of objects for a batched request.
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/NationalityResult'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/NationalityResult'
+              examples:
+                single:
+                  summary: Single name lookup
+                  value:
+                    name: nguyen
+                    country:
+                    - country_id: VN
+                      probability: 0.561
+                    - country_id: US
+                      probability: 0.035
+                    - country_id: AU
+                      probability: 0.021
+                    - country_id: CA
+                      probability: 0.016
+                    - country_id: FR
+                      probability: 0.012
+                    count: 360408
+                not_found:
+                  summary: Name not found in dataset
+                  value:
+                    name: zzzzunknown
+                    country: null
+                    count: 0
+                batch:
+                  summary: Batched name lookup
+                  value:
+                  - name: anna
+                    country:
+                    - country_id: FI
+                      probability: 0.083
+                    - country_id: PL
+                      probability: 0.079
+                    - country_id: SE
+                      probability: 0.071
+                    - country_id: 'NO'
+                      probability: 0.063
+                    - country_id: DK
+                      probability: 0.058
+                    count: 1234567
+                  - name: john
+                    country:
+                    - country_id: US
+                      probability: 0.288
+                    - country_id: GB
+                      probability: 0.195
+                    - country_id: AU
+                      probability: 0.072
+                    - country_id: CA
+                      probability: 0.065
+                    - country_id: IE
+                      probability: 0.042
+                    count: 987654
+        '402':
+          description: Payment Required. The monthly request quota has been exceeded on the free tier.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Request limit reached
+        '422':
+          description: Unprocessable Entity. The request is missing required parameters or contains invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Missing 'name' parameter
+        '429':
+          description: Too Many Requests. Monthly usage limit exceeded. Resets at the start of the next billing cycle.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                error: Request limit reached
+      tags:
+      - Nationality
+components:
+  schemas:
+    CountryProbability:
+      type: object
+      description: A country prediction with its associated probability score
+      properties:
+        country_id:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+          pattern: ^[A-Z]{2}$
+          example: VN
+        probability:
+          type: number
+          format: double
+          description: Confidence score for this nationality, between 0 and 1. The sum of all probabilities in the array may be less than 1 as only the top five results are returned.
+          minimum: 0
+          maximum: 1
+          example: 0.561
+      required:
+      - country_id
+      - probability
+    NationalityResult:
+      type: object
+      description: Nationality prediction for a single name
+      properties:
+        name:
+          type: string
+          description: The input name as submitted in the request
+        country:
+          description: Ranked list of up to five predicted nationalities with probability scores. Null when the name is not found in the dataset after all matching attempts (direct match, diacritics removal, full name parsing).
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CountryProbability'
+            maxItems: 5
+          - type: 'null'
+        count:
+          type: integer
+          description: Number of data points used in the prediction
+          minimum: 0
+          example: 360408
+      required:
+      - name
+      - country
+      - count
+    ErrorResponse:
+      type: object
+      description: Error response from the API
+      properties:
+        error:
+          type: string
+          description: Human-readable error message describing the problem
+      required:
+      - error
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: query
+      name: apikey
+      description: API key obtained from https://nationalize.io/login. The same key is shared across all three Demografix services (Genderize, Agify, Nationalize).
