@@ -1,0 +1,14 @@
+{
+  "provider": "nationalize",
+  "sources": [
+    "nationalize-nationality-api-openapi.yml"
+  ],
+  "outputs": [
+    "nationalize-nationality-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
