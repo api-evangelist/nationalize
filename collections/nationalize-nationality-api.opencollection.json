@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nationalize.io Nationality API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Nationality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Predict nationality from name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nationalize.io/",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "A single name to predict nationality for. For batched lookups use the array form `name[]` repeated up to 10 times. Last names carry the strongest nationality signals; full names are also accepted and parsed automatically."
+              },
+              {
+                "name": "name[]",
+                "value": "",
+                "type": "query",
+                "description": "Batch form of the name parameter. Repeat up to 10 times to look up multiple names in a single request. Each name counts individually toward the monthly usage limit."
+              },
+              {
+                "name": "apikey",
+                "value": "",
+                "type": "query",
+                "description": "API authentication key. Required for paid plans and to track usage. Obtain at https://nationalize.io/login. The same key works across Genderize, Agify, and Nationalize."
+              }
+            ]
+          },
+          "docs": "Predicts the nationality of one or more people based on their names, returning ranked country probabilities drawn from a dataset of approximately one billion people. Supports single name lookups, batched requests of up to 10 names, full name parsing, and diacritics handling. Results are returned as ISO 3166-1 alpha-2 country codes paired with probability scores, up to five countries per name."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,316 @@
+{
+  "item": [
+    {
+      "id": "40c68abd-1331-42b2-b5f2-64ace5d840cb",
+      "name": "Nationality",
+      "description": {
+        "content": "Operations for predicting nationality from names",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32a1c495-aaff-433d-9add-72240a30e521",
+          "name": "Predict nationality from name",
+          "request": {
+            "name": "Predict nationality from name",
+            "description": {
+              "content": "Predicts the nationality of one or more people based on their names, returning ranked country probabilities drawn from a dataset of approximately one billion people. Supports single name lookups, batched requests of up to 10 names, full name parsing, and diacritics handling. Results are returned as ISO 3166-1 alpha-2 country codes paired with probability scores, up to five countries per name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "(Required) A single name to predict nationality for. For batched lookups use the array form `name[]` repeated up to 10 times. Last names carry the strongest nationality signals; full names are also accepted and parsed automatically."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[]",
+                  "value": "<string>",
+                  "description": "Batch form of the name parameter. Repeat up to 10 times to look up multiple names in a single request. Each name counts individually toward the monthly usage limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[]",
+                  "value": "<string>",
+                  "description": "Batch form of the name parameter. Repeat up to 10 times to look up multiple names in a single request. Each name counts individually toward the monthly usage limit."
+                },
+                {
+                  "disabled": false,
+                  "key": "apikey",
+                  "value": "<string>",
+                  "description": "API authentication key. Required for paid plans and to track usage. Obtain at https://nationalize.io/login. The same key works across Genderize, Agify, and Nationalize."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f044996-7ff3-4847-a9b0-dccac0918c1a",
+              "name": "Nationality prediction result. Returns a single object for a single name lookup, or an array of objects for a batched request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "nguyen"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "anna"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "john"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "kim"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"nguyen\",\n  \"country\": [\n    {\n      \"country_id\": \"VN\",\n      \"probability\": 0.561\n    },\n    {\n      \"country_id\": \"US\",\n      \"probability\": 0.035\n    },\n    {\n      \"country_id\": \"AU\",\n      \"probability\": 0.021\n    },\n    {\n      \"country_id\": \"CA\",\n      \"probability\": 0.016\n    },\n    {\n      \"country_id\": \"FR\",\n      \"probability\": 0.012\n    }\n  ],\n  \"count\": 360408\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "acdf814f-444c-41cc-9e53-f8dbb9af9f0e",
+              "name": "Payment Required. The monthly request quota has been exceeded on the free tier.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "nguyen"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "anna"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "john"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "kim"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request limit reached\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b7063c8-2c82-43b4-bd31-df800d158de4",
+              "name": "Unprocessable Entity. The request is missing required parameters or contains invalid input.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "nguyen"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "anna"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "john"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "kim"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Missing 'name' parameter\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d14f5f6a-cd04-4330-9a96-f4d6a78890e7",
+              "name": "Too Many Requests. Monthly usage limit exceeded. Resets at the start of the next billing cycle.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "nguyen"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "anna"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "john"
+                    },
+                    {
+                      "key": "name[]",
+                      "value": "kim"
+                    },
+                    {
+                      "key": "apikey",
+                      "value": "your_api_key_here"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request limit reached\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nationalize.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3055d58e-fbba-438a-90dc-8926783124dc",
+    "name": "Nationalize.io Nationality API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Free REST API that predicts the nationality of a person based on their first name using probabilistic models derived from a dataset of approximately one billion people spanning 250 countries and territories. Accepts single or batched names (up to 10), handles diacritics automatically, and returns ranked country probabilities as JSON using ISO 3166-1 alpha-2 codes. The same API key works across all three Demografix services (Genderize, Agify, Nationalize).",
+      "type": "text/plain"
+    }
+  }
+}
