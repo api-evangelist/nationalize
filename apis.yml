@@ -1,6 +1,18 @@
 aid: nationalize
 name: Nationalize.io
 description: Free REST API that predicts the nationality of a person based on their first name using probabilistic models derived from a dataset of approximately one billion people spanning 250 countries and territories. Accepts single or batched names, handles diacritics and non-Latin alphabets, and returns ranked country probabilities as JSON. The same API key works across all three Demografix services (Genderize, Agify, Nationalize).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
