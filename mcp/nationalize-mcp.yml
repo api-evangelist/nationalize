@@ -16,6 +16,10 @@ deployment:
 tools_count: 1
 tools:
 - name: predict_nationality
-  description: ''
+  description: Predict the most likely nationalities of a person from their name. Returns a ranked list
+    of countries (ISO 3166-1 alpha-2) with probability scores and the count of people with that name in
+    the underlying dataset. Works best on last names. A
 tools_source: live tools/list via initialize handshake, 2026-09-11 (signals/audit_mcp_authorship.py --probe)
 authorship: provider
+descriptions_source: live tools/list (authorship probe or saved capture); filled by backfill-tools-from-authorship.py
+  --descriptions, 2026-09-28
