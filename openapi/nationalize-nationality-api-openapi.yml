@@ -139,6 +139,30 @@ paths:
       - Nationality
 components:
   schemas:
+    NationalityResult:
+      type: object
+      description: Nationality prediction for a single name
+      properties:
+        name:
+          type: string
+          description: The input name as submitted in the request
+        country:
+          description: Ranked list of up to five predicted nationalities with probability scores. Null when the name is not found in the dataset after all matching attempts (direct match, diacritics removal, full name parsing).
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/CountryProbability'
+            maxItems: 5
+          - type: 'null'
+        count:
+          type: integer
+          description: Number of data points used in the prediction
+          minimum: 0
+          example: 360408
+      required:
+      - name
+      - country
+      - count
     ErrorResponse:
       type: object
       description: Error response from the API
@@ -167,30 +191,6 @@ components:
       required:
       - country_id
       - probability
-    NationalityResult:
-      type: object
-      description: Nationality prediction for a single name
-      properties:
-        name:
-          type: string
-          description: The input name as submitted in the request
-        country:
-          description: Ranked list of up to five predicted nationalities with probability scores. Null when the name is not found in the dataset after all matching attempts (direct match, diacritics removal, full name parsing).
-          oneOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/CountryProbability'
-            maxItems: 5
-          - type: 'null'
-        count:
-          type: integer
-          description: Number of data points used in the prediction
-          minimum: 0
-          example: 360408
-      required:
-      - name
-      - country
-      - count
   securitySchemes:
     apiKey:
       type: apiKey
