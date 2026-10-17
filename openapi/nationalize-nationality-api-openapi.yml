@@ -139,6 +139,15 @@ paths:
       - Nationality
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response from the API
+      properties:
+        error:
+          type: string
+          description: Human-readable error message describing the problem
+      required:
+      - error
     NationalityResult:
       type: object
       description: Nationality prediction for a single name
@@ -163,15 +172,6 @@ components:
       - name
       - country
       - count
-    ErrorResponse:
-      type: object
-      description: Error response from the API
-      properties:
-        error:
-          type: string
-          description: Human-readable error message describing the problem
-      required:
-      - error
     CountryProbability:
       type: object
       description: A country prediction with its associated probability score
