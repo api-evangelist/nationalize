@@ -1,0 +1,38 @@
+{
+  "endpoint": "https://mcp.nationalize.io/",
+  "captured": "2026-10-20",
+  "method": "initialize + tools/list (anonymous, no tool called; roadmap#992)",
+  "protocol_version": "2025-06-18",
+  "server_info": {
+    "name": "nationalize",
+    "version": "1.0.0"
+  },
+  "result": {
+    "tools": [
+      {
+        "description": "Predict the most likely nationalities of a person from their name.\nReturns a ranked list of countries (ISO 3166-1 alpha-2) with probability\nscores and the count of people with that name in the underlying dataset.\nWorks best on last names. Accepts a single name or a list of up to 100\nnames per call.\n",
+        "inputSchema": {
+          "properties": {
+            "name": {
+              "description": "A single name (full name or last) or a list of up to 100 names",
+              "oneOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                }
+              ]
+            }
+          },
+          "type": "object"
+        },
+        "name": "predict_nationality",
+        "title": "predict_nationality"
+      }
+    ]
+  }
+}
