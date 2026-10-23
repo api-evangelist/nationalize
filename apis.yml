@@ -54,6 +54,8 @@ apis:
   - type: Pricing
     url: https://nationalize.io/pricing
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/nationalizeio/overview
   - type: AgenticAccess
     url: agentic-access/nationalize-agentic-access.yml
   - type: DomainSecurity
